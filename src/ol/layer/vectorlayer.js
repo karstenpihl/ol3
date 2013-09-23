@@ -262,8 +262,8 @@ ol.layer.VectorLayerEventType = {
 
 
 /**
- * @typedef {{extent: (ol.Extent|undefined),
- *            features: (Array.<ol.Feature>|undefined),
+ * @typedef {{extent: (ol.Extent),
+ *            features: (Array.<ol.Feature>),
  *            target: ol.layer.Vector,
  *            type: ol.layer.VectorLayerEventType}}
  */
@@ -358,17 +358,6 @@ ol.layer.Vector.prototype.addFeatures = function(features) {
     extent: extent,
     features: features,
     type: ol.layer.VectorLayerEventType.ADD
-  }));
-};
-
-
-/**
- * Remove all features from the layer.
- */
-ol.layer.Vector.prototype.clear = function() {
-  this.featureCache_.clear();
-  this.dispatchEvent(/** @type {ol.layer.VectorLayerEventObject} */ ({
-    type: ol.layer.VectorLayerEventType.CHANGE
   }));
 };
 
