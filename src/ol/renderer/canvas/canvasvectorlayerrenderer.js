@@ -175,19 +175,13 @@ goog.inherits(ol.renderer.canvas.VectorLayer, ol.renderer.canvas.Layer);
 
 
 /**
- * Get rid cached tiles.  If the optional extent is provided, only tiles that
- * intersect that extent will be removed.
- * @param {ol.Extent=} opt_extent extent Expire tiles within this extent only.
+ * Get rid cached tiles.
+ * @param {ol.Extent} extent Expire tiles within this extent only.
  * @private
  */
-ol.renderer.canvas.VectorLayer.prototype.expireTiles_ = function(opt_extent) {
-  var tileCache = this.tileCache_;
-  if (goog.isDef(opt_extent)) {
-    var tileRange = this.tileGrid_.getTileRangeForExtentAndZ(opt_extent, 0);
-    tileCache.pruneTileRange(tileRange);
-  } else {
-    tileCache.clear();
-  }
+ol.renderer.canvas.VectorLayer.prototype.expireTiles_ = function(extent) {
+  var tileRange = this.tileGrid_.getTileRangeForExtentAndZ(extent, 0);
+  this.tileCache_.pruneTileRange(tileRange);
 };
 
 
