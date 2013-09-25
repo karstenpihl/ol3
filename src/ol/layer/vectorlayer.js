@@ -223,7 +223,7 @@ ol.layer.FeatureCache.prototype.getFeatureWithUid = function(uid) {
  * Remove a feature from the cache.
  * @param {ol.Feature} feature Feature.
  * @return {ol.Extent} The cached extent of the removed feature geometry, or
- *     null if the feature has no geometry.
+ *     null if the feature was not cached or has no geometry.
  */
 ol.layer.FeatureCache.prototype.remove = function(feature) {
   var bounds = null;
@@ -244,7 +244,9 @@ ol.layer.FeatureCache.prototype.remove = function(feature) {
       result = this.rTree_.remove([-Infinity, -Infinity, Infinity, Infinity],
           feature);
     }
-    bounds = result[0].extent;
+    if (result.length > 0) {
+      bounds = result[0].extent;
+    }
   }
   return bounds;
 };
