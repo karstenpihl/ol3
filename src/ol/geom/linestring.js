@@ -2,7 +2,7 @@ goog.provide('ol.geom.LineString');
 
 goog.require('goog.asserts');
 goog.require('ol.CoordinateArray');
-goog.require('ol.geom');
+goog.require('ol.coordinate');
 goog.require('ol.geom.Geometry');
 goog.require('ol.geom.GeometryType');
 goog.require('ol.geom.SharedVertices');
@@ -159,7 +159,7 @@ ol.geom.LineString.prototype.distanceFromCoordinate = function(coordinate) {
   var coordinates = this.getCoordinates();
   var dist2 = Infinity;
   for (var i = 0, j = 1, len = coordinates.length; j < len; i = j++) {
-    dist2 = Math.min(dist2, ol.geom.squaredDistanceToSegment(coordinate,
+    dist2 = Math.min(dist2, ol.coordinate.squaredDistanceToSegment(coordinate,
         [coordinates[i], coordinates[j]]));
   }
   return Math.sqrt(dist2);
